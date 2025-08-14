@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mias-bakery-backend
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DEMO_MODE
+        value: true
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CORS_ORIGIN
+        value: https://miasdemo.netlify.app
