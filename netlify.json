@@ -1,0 +1,7 @@
+{
+  "build": {
+    "command": "npm run build",
+    "publish": ".next"
+  },
+  "buildbot_url": "https://github.com/Jkinney331/mias-brooklyn-bakery"
+}
