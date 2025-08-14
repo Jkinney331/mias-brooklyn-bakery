@@ -1,0 +1,35 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_PUBLIC_API_URL = "https://miasdemo-backend.vercel.app/api"
+  NEXT_PUBLIC_WS_URL = "wss://miasdemo-backend.vercel.app"
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://miasdemo-backend.vercel.app/api/:splat"
+  status = 200
+  force = true
+
+[context.production.environment]
+  NEXT_PUBLIC_ENV = "production"
+  NEXT_PUBLIC_DEMO_MODE = "true"
+
+[context.deploy-preview.environment]
+  NEXT_PUBLIC_ENV = "preview"
+
+[context.branch-deploy.environment]
+  NEXT_PUBLIC_ENV = "development"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
